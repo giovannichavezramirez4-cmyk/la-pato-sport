@@ -1,0 +1,333 @@
+
+:root {
+  --bg-color: #0f1115;
+  --card-bg: #1a1d24;
+  --accent: #00ff88;
+  --accent-hover: #00cc6a;
+  --text-color: #ffffff;
+  --text-muted: #a0a5b5;
+  --danger: #ff4757;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,255,136,0.1)), 
+              url('https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=1200&q=80') center/cover;
+}
+
+.login-box {
+  background: rgba(26, 29, 36, 0.95);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  box-shadow: 0 8px 32px rgba(0,255,136,0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.input-group input, .select-custom {
+  width: 100%;
+  padding: 12px;
+  background: #0f1115;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+  outline: none;
+}
+
+.input-group input:focus, .select-custom:focus {
+  border-color: var(--accent);
+}
+
+.btn {
+  background: var(--accent);
+  color: #000;
+  font-weight: bold;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 0 15px rgba(0,255,136,0.4);
+}
+
+.btn-secondary {
+  background: #333;
+  color: #fff;
+}
+.btn-secondary:hover {
+  background: #444;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+.app-container {
+  display: none;
+}
+
+header {
+  background: #14171d;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--accent);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.cart-btn-container {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--accent);
+  color: #000;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+
+main {
+  padding: 30px 5%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.category-card {
+  position: relative;
+  height: 350px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.category-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 25px;
+}
+.sports-nav {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.sport-tab {
+  background: var(--card-bg);
+  padding: 10px 20px;
+  border-radius: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid #333;
+  transition: all 0.3s;
+}
+
+.sport-tab.active, .sport-tab:hover {
+  background: var(--accent);
+  color: #000;
+  font-weight: bold;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 6px;
+  background: var(--card-bg);
+  border: 1px solid #333;
+  color: #fff;
+}
+.recommendation-box {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 4px solid var(--accent);
+  margin-bottom: 40px;
+}
+
+.rec-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.product-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #2a2e39;
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.product-info h4 {
+  margin-bottom: 5px;
+}
+
+.product-info .price {
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.product-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inline-controls {
+  display: flex;
+  gap: 10px;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 650px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #333;
+}
+
+.cart-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.cart-actions input {
+  width: 50px;
+  padding: 5px;
+  text-align: center;
+  background: #0f1115;
+  color: white;
+  border: 1px solid #444;
+}

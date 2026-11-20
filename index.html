@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SportStyle - Tienda Oficial</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="login-screen" class="login-container">
+    <div class="login-box">
+        <h2>SportStyle</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Inicia sesión para ver tu recomendador</p>
+    <form id="login-form">
+        <div class="input-group">
+            <label>Usuario</label>
+            <input type="text" id="username" placeholder="Tu usuario" required>
+        </div>
+        <div class="input-group">
+            <label>Contraseña</label>
+            <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn">Entrar</button>
+        </form>
+    </div>
+</div>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-container">
+
+        <iframe id="youtube-video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+
+    <script>
+
+        const linkYouTube = "https://vm.tiktok.com/ZSpwmLu38/";
+        function convertirLink(url) {
+            let videoId = "";
+            if (url.includes("youtu.be/")) {
+                videoId = url.split("youtu.be/")[1].split("?")[0];
+            } else if (url.includes("watch?v=")) {
+                videoId = url.split("watch?v=")[1].split("&")[0];
+            }
+            return `https://www.youtube.com/embed/${videoId}`;
+        }
+
+    
+        if (linkYouTube && !linkYouTube.includes("TU_LINK_AQUI")) {
+            document.getElementById("youtube-video").src = convertirLink(linkYouTube);
+        }
+    </script>
+
+
+<div id="app-screen" class="app-container">
+    <header>
+    <div class="logo">⚡LA PATO-SPORT</div>
+    <div class="cart-btn-container">
+        <button class="btn btn-secondary" onclick="toggleCart()">🛒 Carrito <span id="cart-count" class="cart-count">0</span></button>
+    </div>
+    </header>
+
+    <main>
+    <section id="view-hub">
+        <h2 style="text-align: center; margin-bottom: 10px;">¿Qué te gustaría explorar hoy?</h2>
+        <p style="text-align: center; color: var(--text-muted);">Elige una sección para comenzar</p>
+
+        <div class="categories-grid">
+            <div class="category-card" onclick="cambiarVista('deportiva')">
+            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" alt="Deportiva">
+            <div class="category-overlay">
+                <h3>Ropa Deportiva</h3>
+                <p>Equipamiento por deporte con sugerencias de kits completos.</p> 
+            </div>
+        </div>
+        <div class="category-card" onclick="cambiarVista('moda')">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80" alt="Moda">
+            <div class="category-overlay">
+                <h3>Ropa a la Moda</h3>
+                <p>Estilo urbano y casual con kits de estilo recomendados.</p>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section id="view-sports" style="display: none;">
+        <button class="btn btn-secondary" style="width: auto; margin-bottom: 20px;" onclick="cambiarVista('hub')">← Volver</button>
+        <div class="search-bar">
+            <input type="text" id="search-input-sports" placeholder="🔍 Buscar prendas deportivas..." onkeyup="filterProducts('sports')">
+        </div>
+
+        <div class="sports-nav">
+            <div class="sport-tab active" onclick="seleccionarDeporte('futbol', event)">⚽ Fútbol</div>
+            <div class="sport-tab" onclick="seleccionarDeporte('basketball', event)">🏀 Basketball</div>
+            <div class="sport-tab" onclick="seleccionarDeporte('running', event)">🏃 Running</div>
+            <div class="sport-tab" onclick="seleccionarDeporte('gym', event)">🏋️ Gym / Fitness</div>
+            <div class="sport-tab" onclick="seleccionarDeporte('tenis', event)">🎾 Tenis</div>
+            <div class="sport-tab" onclick="seleccionarDeporte('natacion', event)">🏊 Natación</div>
+            <div class="sport-tab" onclick="seleccionarDeporte('ciclismo', event)">🚴 Ciclismo</div>
+        </div>
+
+        
+        <div class="recommendation-box">
+            <h3 id="rec-title-sports">Sugerencia Deportiva</h3>
+            <p id="rec-desc-sports" style="color: var(--text-muted); margin: 10px 0;">Cargando...</p>
+                <div class="rec-actions">
+                <button class="btn btn-secondary" style="width: auto;" onclick="generateAlternativeRecommendation('sports')">🔄 Cambiar sugerencia</button>
+                <button class="btn" style="width: auto;" onclick="agregarKitAlCarrito('sports')">🛒 Comprar Kit Recomendado</button>
+                </div>
+        </div>
+
+        <h3>Artículos Disponibles (9+ Productos)</h3>
+        <br>
+        <div class="products-grid" id="products-container-sports"></div>
+    </section>
+
+
+    <section id="view-fashion" style="display: none;">
+        <button class="btn btn-secondary" style="width: auto; margin-bottom: 20px;" onclick="cambiarVista('hub')">← Volver</button>
+        
+        <div class="search-bar">
+            <input type="text" id="search-input-fashion" placeholder="🔍 Buscar ropa casual y urbano..." onkeyup="filterProducts('fashion')">
+        </div>
+
+        <div class="sports-nav">
+            <div class="sport-tab active" onclick="seleccionarModa('casual', event)">😎 Casual Diario</div>
+            <div class="sport-tab" onclick="seleccionarModa('urbano', event)">🛹 Streetwear Urbano</div>
+        </div>
+
+        
+        <div class="recommendation-box">
+            <h3 id="rec-title-fashion">Sugerencia de Estilo</h3>
+            <p id="rec-desc-fashion" style="color: var(--text-muted); margin: 10px 0;">Cargando...</p>
+            <div class="rec-actions">
+            <button class="btn btn-secondary" style="width: auto;" onclick="generateAlternativeRecommendation('fashion')">🔄 Cambiar sugerencia</button>
+            <button class="btn" style="width: auto;" onclick="agregarKitAlCarrito('fashion')">🛒 Comprar Kit Recomendado</button>
+            </div>
+        </div>
+
+        <h3>Catálogo de Moda (9+ Productos)</h3>
+        <br>
+        <div class="products-grid" id="products-container-fashion"></div>
+    </section>
+    </main>
+    </div>
+
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <h2>Carrito de Compras / Reembolsos</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 5px;">Aquí puedes modificar piezas o eliminar artículos para solicitar devoluciones.</p>
+            <br>
+        <div id="cart-items-container"></div>
+        <br>
+    <h3 style="text-align: right;">Total a Pagar: $<span id="cart-total">0.00</span></h3>
+        <br>
+        <div style="display: flex; gap: 10px;">
+        <button class="btn btn-secondary" onclick="toggleCart()">Cerrar</button>
+        <button class="btn" onclick="checkout()">Finalizar Compra</button>
+        </div>
+    </div>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
